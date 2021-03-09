@@ -1,8 +1,6 @@
 <?php
  
- require_once '../vendor2/autoload.php';
- require_once '../auth.php';
-
+ 
 
 class buscarPaciente extends conection{
     public function pacientes($idMedico, $parametros)
@@ -11,8 +9,8 @@ class buscarPaciente extends conection{
    
         try{
 
-            $buscarPaciente = new conection();
-            $mysqli = $buscarPaciente->conections();
+            $conection = new conection();
+            $mysqli = $conection->conections();
              
             $edad= self:: edad($parametros->edad);
             $genero= self:: genero($parametros->genero);
@@ -32,7 +30,7 @@ class buscarPaciente extends conection{
             $stmt->execute();
             $result = $stmt->get_result();
 
-            if ($result->num_rows >= 1) {
+            if ($result-> num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
 
                     array_push($result_array, $row);
